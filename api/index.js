@@ -1,3 +1,22 @@
-export default function handler(req, res) {
-  res.redirect(302, 'https://script.google.com/macros/s/AKfycbzmsJh2-mOA-OmjABG9atz3O4NuCLGVKKeq23cjWIqH2jaUugx2VRxXqS9sDE0O3q9BRA/exec');
+// pages/index.js
+import { useRouter } from 'next/router';
+
+export default function Home() {
+  const router = useRouter();
+  const { shop_id, auth_code } = router.query;
+
+  return (
+    <div style={{ fontFamily: 'Arial, sans-serif', padding: '20px' }}>
+      <h1>Redirecionamento Shopee funcionando!</h1>
+      {shop_id && auth_code ? (
+        <>
+          <p><strong>Shop ID:</strong> {shop_id}</p>
+          <p><strong>Auth Code:</strong> {auth_code}</p>
+          <p>Agora você pode usar esses dados para obter o access_token.</p>
+        </>
+      ) : (
+        <p>Aguardando parâmetros da Shopee...</p>
+      )}
+    </div>
+  );
 }
